@@ -7,36 +7,19 @@
     
 ////////////////////////////////////////////////////////////////////
 
-    let i = 0,ci =0  ; 
-    window.onload = function (){
-    // localStorage.clear(); 
-    for(it = 1 ;it < 100 ;it++){
-        var myObject = localStorage.getItem('node' + it + '');
-        // console.log(myObject );
-        if(myObject === null) continue; 
-        i = it ; 
-        console.log('retreiving objests') ; 
-        console.log(myObject );
-        let node = document.createElement('div') ; 
-        node.innerHTML = myObject; 
-        para.appendChild(node);
-     }
-
+    let i = 0 ; 
     function AddCategory(){
+        console.log('Added Category') ;
         let txt = ta.value; 
         if(txt === '') return;
-        ci = ci + 1;
-        let node = document.createElement('div'); 
-        node.innerHTML = '' ; 
-        console.log('Added Category' + txt ) ;
-
     }
 
     function AddBoard(){
         let txt = ta.value; 
         if(txt === '') return;
         i = i + 1;
-        console.log('adding board' + txt) ; 
+        console.log('adding board') ; 
+        console.log(txt) ; 
         let node = document.createElement('div') ; 
         node.innerHTML = 
         '<div   id="mydiv' + i + '" > <input type="checkbox" id="check' + i + '" name="check' +
@@ -73,7 +56,19 @@
     }
 
 
-
+    window.onload = function (){
+        // localStorage.clear(); 
+        for(it = 1 ;it < 100 ;it++){
+            var myObject = localStorage.getItem('node' + it + '');
+            // console.log(myObject );
+            if(myObject === null) continue; 
+            i = it ; 
+            console.log('retreiving objests') ; 
+            console.log(myObject );
+            let node = document.createElement('div') ; 
+            node.innerHTML = myObject; 
+            para.appendChild(node);
+         }
 
        
     }
@@ -86,4 +81,4 @@
 
     console.log('A journey begins!!') 
     btn.addEventListener('click', AddBoard); 
-    // cbtn.addEventListener('click', AddCategory); 
+    cbtn.addEventListener('click', AddCategory); 
