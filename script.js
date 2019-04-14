@@ -1,18 +1,33 @@
 
     cbtn = document.querySelector('.button0') ; 
+    cta = document.querySelector('.ta0');
+    cdiv = document.querySelector('#cdiv') ; 
     btn = document.querySelector('.button1') ; 
     ta = document.querySelector('.ta1') ; 
-    para = document.querySelector('div') ; 
+    para = document.querySelector('.mydiv') ; 
+    allbtn = document.querySelectorAll('.btn1');
 
     
 ////////////////////////////////////////////////////////////////////
 
-    let i = 0 ; 
+    let i = 0,j =0 ; 
     function AddCategory(){
-        console.log('Added Category') ;
-        let txt = ta.value; 
+        let txt = cta.value; 
         if(txt === '') return;
+        console.log(cdiv);
+        j= j + 1;
+        let node = document.createElement('div') ; 
+
+        node.innerHTML = '<div class = "mydiv" id = "bdiv' + j +'"> <textarea class = "ta1"  id = "bta' + j + '" placeholder="Add ' + txt + ' Todos"></textarea> <button class = "btn1" id = "bbutton' + j + '"> + </button>'
+        cdiv.appendChild(node) ; 
+        cta.value ='' ; 
+        localStorage.setItem('cnode' + j + '', (node.innerHTML));
+        var myObject = (localStorage.getItem('cnode' + j + ''));
+        console.log('Added Category') ;
+
+        console.log(myObject);
     }
+    
 
     function AddBoard(){
         let txt = ta.value; 
@@ -74,7 +89,9 @@
     }
     
     
- 
+ function AddNewBoard(){
+     console.log('this');
+ }
     
 ////////////////////////////////////////////////////////////////////
 
@@ -82,3 +99,10 @@
     console.log('A journey begins!!') 
     btn.addEventListener('click', AddBoard); 
     cbtn.addEventListener('click', AddCategory); 
+    for(i =0 ; i< allbtn.length ; i++){
+        allbtn[i].addEventListener('click',AddNewBoard);
+    }
+    // allbtn.forEach(element => {
+    //     console.log('element');
+    //     element.addEventListener('click',AddNewBoard)  ;
+    // });
